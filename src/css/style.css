@@ -46,6 +46,7 @@ p {
 .search-field_submit {
   font-weight: 700;
   color: var(--themeGrey);
+  background-color: transparent;
 }
 .search-field_submit:hover {
   color: var(--themeBrown);
@@ -128,4 +129,15 @@ input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-results-button,
 input[type="search"]::-webkit-search-results-decoration {
   display: none;
+}
+
+@media (max-width: 576px) {
+  .wrapper {
+    justify-content: center;
+    width: 90%;
+  }
+  .container  {
+    justify-content: center;
+    flex-direction: column;
+  }
 }
