@@ -39,8 +39,8 @@ let info = {
       checkbox.addEventListener("change", function () {
         if (this.checked) {
           block.classList.add("block-check");
-          title.classList.add('block-title_check');
-          body.classList.add('block-text_check');
+          title.classList.add("block-title_check");
+          body.classList.add("block-text_check");
         } else {
           block.classList.remove("block-check");
           title.classList.remove("block-title_check");
@@ -51,19 +51,21 @@ let info = {
   },
 };
 const searchField = document.querySelector(".search-field");
+
 searchField.addEventListener("submit", (event) => {
   event.preventDefault();
   const searchTitle = event.target.querySelector(".search-field_title").value;
-  history.pushState(null,null, `?search=${searchTitle}`)
-  searchBlocks(searchTitle);
+  if (searchTitle.length == 0) {
+    alert("You have to write something!");
+  } else if (searchTitle.length > 0) {
+    history.pushState(null, null, `?search=${searchTitle}`);
+    searchBlocks(searchTitle);
+  }
 });
 
 function searchBlocks(searchTitle) {
   const wrapper = document.querySelector(".wrapper");
   let arr = wrapper.querySelectorAll(".block");
-  if (searchTitle.length == 0) {
-    alert("You have to write something!");
-  };
   arr.forEach((el) => {
     el.style.display = "block";
     let value = el.querySelector(".block-title").innerHTML;
@@ -71,6 +73,8 @@ function searchBlocks(searchTitle) {
       el.style.display = "none";
     }
   });
-}
+};
+
+window.history.pushState({}, "", "index.html");
 
 info.fetchInfo();
